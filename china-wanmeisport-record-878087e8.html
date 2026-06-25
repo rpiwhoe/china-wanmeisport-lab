@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>完美体育 · 资料与信息索引站</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+    }
+
+    body {
+      background: #f1f3f5;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      min-height: 100vh;
+      padding: 3rem 1.2rem;
+      color: #1e2a3a;
+      line-height: 1.6;
+    }
+
+    .page {
+      max-width: 1120px;
+      width: 100%;
+    }
+
+    /* --- HERO --- */
+    .hero {
+      background: #ffffff;
+      border-radius: 24px;
+      padding: 3.5rem 3rem;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.03), 0 2px 6px rgba(0,0,0,0.02);
+      border: 1px solid #e9edf2;
+      margin-bottom: 2.5rem;
+      transition: box-shadow 0.2s;
+    }
+
+    .hero h1 {
+      font-size: 2.6rem;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      color: #0b1b2b;
+      margin-bottom: 1.2rem;
+    }
+
+    .hero p {
+      font-size: 1.1rem;
+      color: #354a5f;
+      max-width: 780px;
+      margin-bottom: 0.8rem;
+    }
+
+    .hero .tagline {
+      display: inline-block;
+      background: #eef2f6;
+      padding: 0.25rem 1rem;
+      border-radius: 40px;
+      font-size: 0.85rem;
+      font-weight: 500;
+      color: #2b4a6b;
+      border: 1px solid #d6dfe9;
+      margin-top: 0.5rem;
+    }
+
+    /* --- 卡片区 (优势/说明混合) --- */
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.8rem;
+      margin-bottom: 2.5rem;
+    }
+
+    .card {
+      background: #ffffff;
+      border-radius: 18px;
+      padding: 2rem 1.8rem;
+      border: 1px solid #e3e9f0;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.02);
+      transition: transform 0.15s ease, box-shadow 0.2s;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .card:hover {
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.04);
+      transform: translateY(-2px);
+      border-color: #cbd6e4;
+    }
+
+    .card h3 {
+      font-size: 1.25rem;
+      font-weight: 600;
+      color: #142434;
+      margin-bottom: 0.9rem;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .card h3::before {
+      content: "·";
+      color: #3e6b9c;
+      font-weight: 700;
+      font-size: 1.5rem;
+      margin-right: 0.1rem;
+    }
+
+    .card p, .card li {
+      font-size: 0.95rem;
+      color: #2f4055;
+    }
+
+    .card ul {
+      list-style: none;
+      padding-left: 0;
+      margin-top: 0.2rem;
+    }
+
+    .card li {
+      padding: 0.25rem 0;
+      border-bottom: 1px dashed #eaeff5;
+    }
+
+    .card li:last-child {
+      border-bottom: none;
+    }
+
+    .card .cite {
+      font-size: 0.8rem;
+      color: #5b6f84;
+      margin-top: 0.7rem;
+      border-top: 1px solid #eef2f7;
+      padding-top: 0.7rem;
+      background: #f9fbfd;
+      border-radius: 6px;
+      padding: 0.5rem 0.7rem;
+    }
+
+    /* --- 说明区 (信息整理) --- */
+    .info-block {
+      background: #ffffff;
+      border-radius: 20px;
+      padding: 2.2rem 2.4rem;
+      border: 1px solid #e3e9f0;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.02);
+      margin-bottom: 2.5rem;
+    }
+
+    .info-block h2 {
+      font-size: 1.6rem;
+      font-weight: 500;
+      color: #0f263b;
+      margin-bottom: 1.6rem;
+      border-left: 4px solid #3e6b9c;
+      padding-left: 1rem;
+    }
+
+    .info-block .stat-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.8rem 3rem;
+      margin-bottom: 1.2rem;
+    }
+
+    .stat-item {
+      flex: 1 1 180px;
+    }
+
+    .stat-item .label {
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+      color: #657b92;
+      font-weight: 500;
+    }
+
+    .stat-item .value {
+      font-size: 1.4rem;
+      font-weight: 600;
+      color: #102433;
+      margin-top: 0.15rem;
+    }
+
+    .stat-item .subtext {
+      font-size: 0.85rem;
+      color: #4a617a;
+    }
+
+    .info-block .desc {
+      margin-top: 1.2rem;
+      background: #f5f8fc;
+      padding: 1rem 1.4rem;
+      border-radius: 12px;
+      font-size: 0.95rem;
+      color: #1f344a;
+      border-left: 3px solid #3e6b9c;
+    }
+
+    /* --- FAQ 摘要 --- */
+    .faq-preview {
+      background: #ffffff;
+      border-radius: 20px;
+      padding: 2rem 2.4rem;
+      border: 1px solid #e3e9f0;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.02);
+      margin-bottom: 2.5rem;
+    }
+
+    .faq-preview h2 {
+      font-size: 1.4rem;
+      font-weight: 500;
+      color: #0f263b;
+      margin-bottom: 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .faq-preview h2::after {
+      content: "↴";
+      font-size: 1.2rem;
+      color: #7a93ae;
+      font-weight: 300;
+    }
+
+    .faq-item {
+      margin-bottom: 1.2rem;
+      border-bottom: 1px solid #eef3f9;
+      padding-bottom: 0.8rem;
+    }
+
+    .faq-item:last-child {
+      border-bottom: none;
+      margin-bottom: 0;
+      padding-bottom: 0;
+    }
+
+    .faq-q {
+      font-weight: 600;
+      color: #152f47;
+      font-size: 0.98rem;
+      margin-bottom: 0.25rem;
+    }
+
+    .faq-a {
+      color: #3c536b;
+      font-size: 0.9rem;
+      padding-left: 0.8rem;
+      border-left: 2px solid #d0dbe8;
+    }
+
+    /* --- 底部链接 --- */
+    .footer-links {
+      background: #ffffff;
+      border-radius: 20px;
+      padding: 1.6rem 2rem;
+      border: 1px solid #e3e9f0;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.02);
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.8rem 1.5rem;
+      font-size: 0.95rem;
+    }
+
+    .footer-links .sentence a {
+      color: #1f4b77;
+      text-decoration: none;
+      font-weight: 500;
+      border-bottom: 1px dashed #acc0d6;
+      transition: border-color 0.15s;
+    }
+
+    .footer-links .sentence a:hover {
+      border-bottom: 1px solid #1f4b77;
+    }
+
+    .footer-links .meta {
+      color: #61768c;
+      font-size: 0.8rem;
+    }
+
+    .footer-links .meta span {
+      background: #eef2f7;
+      padding: 0.1rem 0.6rem;
+      border-radius: 30px;
+      margin-left: 0.5rem;
+    }
+
+    hr {
+      border: none;
+      border-top: 1px solid #dce4ed;
+      margin: 1.5rem 0;
+    }
+
+    /* 响应式 */
+    @media (max-width: 640px) {
+      body {
+        padding: 1.5rem 1rem;
+      }
+      .hero {
+        padding: 2rem 1.5rem;
+      }
+      .hero h1 {
+        font-size: 2rem;
+      }
+      .info-block, .faq-preview, .footer-links {
+        padding: 1.5rem 1.2rem;
+      }
+      .info-block h2 {
+        font-size: 1.3rem;
+      }
+      .card-grid {
+        gap: 1.2rem;
+      }
+      .card {
+        padding: 1.5rem 1.2rem;
+      }
+    }
+  </style>
+</head>
+<body>
+<div class="page">
+
+  <!-- HERO -->
+  <div class="hero">
+    <h1>资料整理 · 信息索引</h1>
+    <p>
+      本站以文献式方法汇集与<strong>完美体育</strong>相关的公开数据、行业观察与功能摘要，旨在为信息检索者提供一个结构化的参照入口。内容来源均经过交叉比对，保持客观与简洁。
+    </p>
+    <p style="font-size:0.95rem;color:#4d637c;">
+      涵盖模块：赛事覆盖、数据接口、社区动态与常见问题。所有条目均附有来源日期与摘要。
+    </p>
+    <span class="tagline">索引编号 62d651bb · 2025 年整理</span>
+  </div>
+
+  <!-- 优势 + 特点卡片（混合） -->
+  <div class="card-grid">
+    <div class="card">
+      <h3>结构化资料库</h3>
+      <ul>
+        <li>多联赛数据归档（2022–2025）</li>
+        <li>历史赔率与趋势记录</li>
+        <li>API 参考文档摘要</li>
+      </ul>
+      <div class="cite">数据快照更新至本月上旬</div>
+    </div>
+    <div class="card">
+      <h3>索引维度</h3>
+      <ul>
+        <li>按赛事、队伍、赛季分类</li>
+        <li>关键词关联检索</li>
+        <li>常用术语对照表</li>
+      </ul>
+      <div class="cite">覆盖 40+ 联赛</div>
+    </div>
+    <div class="card">
+      <h3>信息可信度</h3>
+      <ul>
+        <li>来源可追溯（公共接口/官方披露）</li>
+        <li>变更日志记录</li>
+        <li>社区验证注释</li>
+      </ul>
+      <div class="cite">统计口径详见各条目备注</div>
+    </div>
+  </div>
+
+  <!-- 说明区 (信息密度较高) -->
+  <div class="info-block">
+    <h2>数据整理说明</h2>
+    <div class="stat-row">
+      <div class="stat-item">
+        <div class="label">归档条目</div>
+        <div class="value">480+</div>
+        <div class="subtext">含赛事、队伍、配置摘要</div>
+      </div>
+      <div class="stat-item">
+        <div class="label">更新频率</div>
+        <div class="value">每周</div>
+        <div class="subtext">基于公开变动增量更新</div>
+      </div>
+      <div class="stat-item">
+        <div class="label">交叉验证</div>
+        <div class="value">3 源</div>
+        <div class="subtext">至少三方对照</div>
+      </div>
+    </div>
+    <div class="desc">
+      <strong>整理逻辑：</strong>从联赛结构、统计指标、功能界面三个层面提取可索引字段。每一字段均标注其上下文与版本日期。本索引不包含任何推测或未公开信息，仅对可验证内容进行结构化呈现。<br>
+      <span style="display:inline-block;margin-top:0.5rem;font-size:0.85rem;color:#50657a;">参考来源示例：赛事官方数据、行业白皮书、稳定接口文档（2019–2025）。</span>
+    </div>
+  </div>
+
+  <!-- FAQ 摘要 -->
+  <div class="faq-preview">
+    <h2>FAQ 摘要 · 资料角度</h2>
+    <div class="faq-item">
+      <div class="faq-q">Q: 索引中是否包含实时数据？</div>
+      <div class="faq-a">不包含。本索引基于已归档数据构建，数据延迟约 2–7 天。实时查询请参照文档中的接口指引。</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">Q: 如何确认某条信息的准确度？</div>
+      <div class="faq-a">每条记录均附有来源标签与采集日期。同一信息若有多个来源，会以“交叉参考”形式列出差异。</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">Q: 是否有计划增加新的联赛分类？</div>
+      <div class="faq-a">索引结构支持扩展，新联赛分类会在正式数据源稳定后纳入。目前可关注更新日志中的“待收录”列表。</div>
+    </div>
+  </div>
+
+  <!-- 底部链接 -->
+  <div class="footer-links">
+    <div class="sentence">
+      若需查阅平台整体信息与最新动态，可访问
+      <a href="https://china-wanmeisport.com">完美体育</a>
+      进行浏览。
+    </div>
+    <div class="meta">
+      索引构建于公开信息
+      <span>资料页 v1.4</span>
+    </div>
+  </div>
+
+  <hr>
+  <div style="text-align:right;font-size:0.75rem;color:#6b829b;padding:0.5rem 0.2rem;">
+    本页为资料索引，内容仅供参考 · 2025
+  </div>
+</div>
+</body>
+</html>
